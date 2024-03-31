@@ -74,7 +74,7 @@ UserRoutes.post("/resetpassword", async (req, res) => {
 
       We received a request to reset your password for the [Company Name] account. If you didn't make this request, you can safely ignore this email.
       To reset your password, click the following link:
-      ${`https://librarybackend-vklf.onrender.com/${findId}`}
+      ${`https://libraryfrontend-upkq.onrender.com/resetpassword/${findId}`}
       
       
       If you have any questions or need further assistance, please contact our support team at ${
