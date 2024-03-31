@@ -2,8 +2,7 @@ import express from "express";
 import bcrypt from "bcrypt";
 import "dotenv/config";
 import { UserModel } from "../models/UserModel.js";
-import { SendEmail } from "../Email/SendEmail.js";
-
+import { sendEmail } from "../mailer/sendEmail.js";
 const UserRoutes = express.Router();
 const saltRound = 10;
 
@@ -87,7 +86,7 @@ UserRoutes.post("/resetpassword", async (req, res) => {
       `,
     };
 
-    const response = SendEmail(data);
+    const response = sendEmail(data);
     if (response) {
       return res.status(200).send({ msg: "sucess" });
     }

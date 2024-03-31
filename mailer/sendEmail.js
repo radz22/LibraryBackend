@@ -15,8 +15,8 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const SendEmail = async (data) => {
+const sendEmail = async (data) => {
   await transporter.sendMail(data);
 };
 
-export { SendEmail };
+export { sendEmail };
