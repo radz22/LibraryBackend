@@ -2,8 +2,8 @@ import express from "express";
 import "dotenv/config";
 import moment from "moment";
 import { BookModel } from "../models/BookModer.js";
-import { sendEmail } from "../Email/SendEmail.js";
 import { cloudinaryExport } from "../Cloudinary/cloudinary.js";
+import { SendEmail } from "../Email/SendEmail.js";
 
 const BooksRoutes = express.Router();
 
@@ -86,7 +86,7 @@ BooksRoutes.put("/:id", async (req, res) => {
 });
 
 const handleSendExpirationDate = (data) => {
-  sendEmail(data);
+  SendEmail(data);
 };
 BooksRoutes.put("/expired/:id", async (req, res) => {
   try {
@@ -105,7 +105,7 @@ BooksRoutes.put("/expired/:id", async (req, res) => {
       findId.save();
       const findBook = findId.title;
       const expired = moment(findId.createAt);
-      const expiredate = expired.add(3, "days");
+      const expiredate = expired.add(2, "days");
 
       const sendExpirationDate = {
         from: process.env.EMAIL,
@@ -136,7 +136,7 @@ BooksRoutes.put("/expired/:id", async (req, res) => {
         };
 
         if (!isBefore) {
-          sendEmail(data);
+          SendEmail(data);
 
           const update = await BookModel.findByIdAndUpdate(id, {
             expired: true,
