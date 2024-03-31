@@ -16,7 +16,14 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendEmail = async (data) => {
-  await transporter.sendMail(data);
+  await transporter.sendMail(data, (error, info) => {
+    if (error) {
+      console.error("Error sending email: ", error);
+      return false;
+    } else {
+      console.log("Email sent: ", info.response);
+      return true;
+    }
+  });
 };
-
 export { sendEmail };

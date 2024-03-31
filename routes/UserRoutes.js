@@ -3,7 +3,6 @@ import bcrypt from "bcrypt";
 import "dotenv/config";
 import { UserModel } from "../models/UserModel.js";
 import { sendEmail } from "../Email/SendEmail.js";
-
 const UserRoutes = express.Router();
 const saltRound = 10;
 
